@@ -8,17 +8,19 @@ class ContentRating extends Component {
     this.state = {
         likes: 0,
         dislikes: 0,
+        totalRatings: 0,
         handleLike: () => {
             this.setState((prevState) =>({
-                likes: prevState.likes + 1
+                likes: prevState.likes + 1,
+                totalRatings: prevState.totalRatings + 1
             }));
         },
         handleDislike: () => {
             this.setState((prevState) =>({
                 dislikes: prevState.dislikes + 1,
+                totalRatings: prevState.totalRatings + 1
             }));
-        },
-        totalRatings: 0
+        }
     };
   }
   render() {
@@ -29,22 +31,17 @@ class ContentRating extends Component {
             Pirates of the carabean
         </p>
         <div className="rating-buttons">
-            <button onClick={this.state.handleLike, this.calculateTotal} className="like-button">
+            <button onClick={this.state.handleLike} className="like-button">
                 Like ({this.state.likes})
             </button>
             <button onClick={this.state.handleDislike} className="dislike-button">
                 Dislike ({this.state.dislikes})
             </button>
+            <p>Total Ratings: {this.state.totalRatings}</p>
         </div>
      </div>
      </>
     );
-  }
-
-  calculateTotal(){
-    this.setState(prevState => ({
-        totalRatings: this.state.likes + this.state.dislikes
-    }))
   }
 }
 
